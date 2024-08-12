@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡ALERTA DE VIRUS!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #f00; /* Rojo para todo el texto */
+            text-align: center;
+            padding-top: 20px; /* Ajuste para móviles */
+            margin: 0;
+            animation: changeBackground 0.5s infinite; /* Más rápido para el fondo epileptico */
+        }
+        @keyframes changeBackground {
+            0% { background-color: #fff; } /* Blanco */
+            50% { background-color: #000; } /* Negro */
+        }
+        .warning {
+            font-size: 36px; /* Tamaño de fuente más pequeño para móviles */
+            font-weight: bold;
+            margin-bottom: 20px; /* Ajuste para móviles */
+        }
+        .spinner-container {
+            display: flex;
+            flex-direction: column; /* Columnas en móviles */
+            align-items: center;
+            gap: 20px; /* Espacio entre los elementos */
+            margin-bottom: 20px;
+        }
+        .spinner {
+            border: 12px solid #f3f3f3; /* Color de fondo */
+            border-top: 12px solid #f00; /* Rojo para el borde superior */
+            border-radius: 50%;
+            width: 120px; /* Tamaño reducido para móviles */
+            height: 120px; /* Tamaño reducido para móviles */
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .download-text {
+            font-size: 24px; /* Tamaño de fuente más pequeño para móviles */
+            color: #f00; /* Rojo */
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        .malicious-code {
+            font-size: 150px; /* Tamaño de fuente más pequeño para móviles */
+            color: #0f0; /* Verde */
+            padding: 5px;
+            border-radius: 5px;
+            white-space: pre-wrap; /* Mantener el formato del texto */
+            display: inline-block;
+            width: 90%; /* Ajuste del ancho para móviles */
+            margin: 20px auto;
+            text-align: left;
+            background-color: #111; /* Fondo oscuro para mejor contraste */
+            overflow: hidden; /* Asegura que el contenido no se desborde */
+        }
+        .images-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Espacio entre las imágenes */
+        }
+        img {
+            max-width: 40%; /* Imágenes más grandes pero ajustadas a móviles */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="warning">SOY TU HUMILDE ACOSADORA</div>
+    <div class="spinner-container">
+        <div class="images-container">
+            <img src="archivos/calavera_hacking1.jpg" alt="Imagen 1"> <!-- Reemplaza con la ruta de tu primera imagen -->
+            <div class="spinner"></div> <!-- Spinner de carga -->
+            <img src="archivos/emogy.jpg" alt="Imagen 2"> <!-- Reemplaza con la ruta de tu segunda imagen -->
+        </div>
+    </div>
+    <div class="download-text">Descargando virus...</div> <!-- Texto debajo del spinner -->
+    <div class="malicious-code" id="malicious-code">
+        <!-- Código malicioso en constante cambio -->
+    </div>
+    <img src="archivos/zul.jpg" alt=""> <!-- Imagen pequeña -->
+
+    <script>
+        window.onload = function() {
+            // Lista de archivos a descargar
+            var archivos = [];
+            for (var i = 1; i <= 100; i++) {
+                archivos.push({ href: 'data:application/octet-stream;base64,', nombre: 'virus' + i + '.exe' });
+            }
+            
+            // Función para descargar archivos uno por uno
+            function descargarArchivo(index) {
+                if (index >= archivos.length) return; // Terminar si todos los archivos se han descargado
+                
+                var archivo = archivos[index];
+                var link = document.createElement('a');
+                link.href = archivo.href;
+                link.download = archivo.nombre;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Esperar 1 segundo antes de descargar el siguiente archivo
+                setTimeout(function() {
+                    descargarArchivo(index + 1);
+                }, 1000);
+            }
+            
+            // Iniciar la descarga de archivos
+            descargarArchivo(0);
+            
+            // Código malicioso en constante cambio
+            var maliciousCodeElement = document.getElementById('malicious-code');
+            var characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
+            
+            function generateRandomString(length) {
+                var result = '';
+                var charactersLength = characters.length;
+                for (var i = 0; i < length; i++) {
+                    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                }
+                return result;
+            }
+            
+            function updateMaliciousCode() {
+                maliciousCodeElement.textContent = generateRandomString(50); // Cambia el tamaño del texto aleatorio aquí
+                setTimeout(updateMaliciousCode, 50); // Cambia cada 50 ms
+            }
+            
+            updateMaliciousCode();
+
+            // Funcionalidad de inactividad
+            var inactivityTime = function () {
+                var timer;
+                window.onload = resetTimer;
+                document.onmousemove = resetTimer;
+                document.onkeydown = resetTimer;
+
+                function logout() {
+                    // Abre múltiples páginas web
+                  
+                    urls.forEach(function(url) {
+                        window.open(url, '_blank');
+                    });
+                }
+
+                function resetTimer() {
+                    clearTimeout(timer);
+                    timer = setTimeout(logout, 15000); // 15 segundos
+                }
+            };
+
+            inactivityTime();
+        }
+    </script>
+</body>
+</html>
+
+
